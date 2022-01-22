@@ -9,8 +9,13 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Paper from '@mui/material/Paper';
 import { artistPopupToggle } from '../actions/artist-popup-toggle';
-import { updateArtists } from '../actions/update-artists';
+import { addArtist } from '../actions/add-artists';
+import { updateArtist } from '../actions/update-artists';
 import { deleteArtist } from '../actions/delete-artists';
+import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DateAdapter from '@mui/lab/AdapterMoment';
+
 
 class ArtistPopup extends Component {
 
@@ -54,7 +59,6 @@ class ArtistPopup extends Component {
     }, show = true, type } = this.props.artistPopup;
 
     const artist = {
-      artistId: this.state.artistId ?? artistId,
       artistName: this.state.artistName ?? artistName,
       albumName: this.state.albumName ?? albumName,
       imageUrl: this.state.imageUrl ?? imageUrl,
@@ -65,7 +69,12 @@ class ArtistPopup extends Component {
 
     console.log('save click', artist, type);
     if (type === 'EDIT') {
-      this.props.updateArtists(artist);
+      artist.artistId = this.state.artistId ?? artistId;
+      this.props.updateArtist(artist);
+    }
+
+    if (type === 'ADD') {
+      this.props.addArtist(artist);
     }
 
     this.closePopup();
@@ -93,9 +102,11 @@ class ArtistPopup extends Component {
   }
 
   onReleaseDateChange(evt) {
+
+    console.log('onReleaseDateChange', evt.format());
     // Some validation should be here if have time
     this.setState({
-      releaseDate: evt.target.value
+      releaseDate: evt.format()
     });
   }
 
@@ -134,7 +145,8 @@ class ArtistPopup extends Component {
       return <div></div>;
     }
 
-    console.log('onArtistNameChange', this.state.artistName);
+    // console.log('onArtistNameChange', this.state.artistName);
+    const displayReleaseDate = this.state.releaseDate ?? releaseDate;
 
     return (
       <div>
@@ -173,7 +185,7 @@ class ArtistPopup extends Component {
                 />
               </div>
               <div className="popup-field">
-                <TextField
+                {/*<TextField
                   className="textfield"
                   disabled={type === 'DELETE'}
                   required
@@ -181,7 +193,19 @@ class ArtistPopup extends Component {
                   label="Release Date"
                   defaultValue={releaseDate}
                   onChange={(env) => this.onReleaseDateChange(env)}
-                />
+                />*/}
+                <LocalizationProvider dateAdapter={DateAdapter}>
+                  <DesktopDatePicker
+                    className="textfield"
+                    required
+                    label="Date Release"
+                    inputFormat="DD MMM yyyy"
+                    value={displayReleaseDate}
+                    onChange={(env) => this.onReleaseDateChange(env)}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                </LocalizationProvider>
+
               </div>
               <div className="popup-field">
                 <TextField
@@ -241,8 +265,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     artistPopupToggle: artistPopupToggle,
-    updateArtists: updateArtists,
+    updateArtist: updateArtist,
     deleteArtist: deleteArtist,
+    addArtist: addArtist,
   }, dispatch);
 }
 

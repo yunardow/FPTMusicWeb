@@ -1,3 +1,12 @@
+To Run:
+1. npm install
+2. npm build
+3. npm start
+
+make sure:
+1. you have node.js ( I use ver 14.x)
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

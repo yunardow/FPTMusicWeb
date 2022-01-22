@@ -30,6 +30,11 @@ class MusicList extends React.Component {
     this.props.artistPopupToggle(artist, 'EDIT', true);
   }
 
+  add() {
+    // console.log('Artist need to edit', artist);
+    this.props.artistPopupToggle({}, 'ADD', true);
+  }
+
   delete(artist) {
     // console.log('Artist need to edit', artist);
     this.props.artistPopupToggle(artist, 'DELETE', true);
@@ -86,6 +91,7 @@ class MusicList extends React.Component {
 
     return (
       <section className="music-list">
+        <Button className="fpt-button add-new" variant="contained" onClick={() => this.add()}>Add New</Button>
         <TableContainer component={Paper} className="table-container">
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
