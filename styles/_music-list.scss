@@ -1,4 +1,15 @@
-.hero {
-  background-color: $color-official-blue;
-  height: 770px;
+.music-list {
+  .table-container {
+    width: 90%;
+    margin: 20px 5%;
+
+    .album-name-cell{
+        display: flex;
+        .album-image{
+            width: 100px;
+            height: 100px;
+            background-size: cover;
+        }
+    }
+  }
 }

@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import Paper from '@mui/material/Paper';
 import { artistPopupToggle } from '../actions/artist-popup-toggle';
 import { updateArtists } from '../actions/update-artists';
 
@@ -134,11 +135,11 @@ class ArtistPopup extends Component {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <Box>
+          <Paper>
             <Typography id="modal-modal-title" variant="h6" component="h2">
               {type}
             </Typography>
-            <div className="popup-field-container">
+            <Paper className="popup-field-container">
               <div className="popup-field">
                 <TextField
                   required
@@ -193,11 +194,11 @@ class ArtistPopup extends Component {
                   onChange={(env) => this.onSampleUrlChange(env)}
                 />
               </div>
-            </div>
+            </Paper>
 
             <Button onClick={() => this.save()}> Save </Button>
 
-          </Box>
+          </Paper>
         </Modal>
       </div>
     );
