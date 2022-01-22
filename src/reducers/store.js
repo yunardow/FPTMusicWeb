@@ -3,16 +3,18 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
-import artistsReducers from './artists';
-import artistPopupReducers from './reducer-artist-popup-is-hide';
+import artistsReducers from './reducer-artists';
+import artistPopupReducers from './reducer-artist-popup';
+import mediaPopupReducers from './reducer-media-popup';
 
 let store;
 
 function initStore() {
   return createStore(
     combineReducers({
-      artists : artistsReducers,
+      artists: artistsReducers,
       artistPopup: artistPopupReducers,
+      mediaPopup: mediaPopupReducers,
     }),
     composeWithDevTools(applyMiddleware(logger, thunk)),
   );
