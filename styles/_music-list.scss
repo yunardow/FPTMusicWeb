@@ -5,10 +5,12 @@
 
     .album-name-cell{
         display: flex;
+
         .album-image{
-            width: 100px;
-            height: 100px;
+            width: 70px;
+            height: 70px;
             background-size: cover;
+            margin: 2px;
         }
     }
   }

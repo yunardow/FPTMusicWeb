@@ -78,8 +78,10 @@ class MusicList extends React.Component {
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                   <TableCell component="th" scope="row" align="center">{index}</TableCell>
-                  <TableCell className="album-name-cell">
-                    {this.renderImage(artist.imageUrl)} <span>{artist.albumName}</span>
+                  <TableCell>
+                    <div className="album-name-cell">
+                      {this.renderImage(artist.imageUrl)} <span>{artist.albumName}</span>
+                    </div>
                   </TableCell>
                   <TableCell>{artist.artistName}</TableCell>
                   <TableCell>{this.formatDate(artist.releaseDate)}</TableCell>
