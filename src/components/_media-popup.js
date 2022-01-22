@@ -5,9 +5,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Paper from '@mui/material/Paper';
 import { mediaPopupToggle } from '../actions/media-popup-toggle';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import PauseIcon from '@mui/icons-material/Pause';
-import StopIcon from '@mui/icons-material/Stop';
+import ReactAudioPlayer from 'react-audio-player';
 
 class MediaPopup extends Component {
 
@@ -41,9 +39,9 @@ class MediaPopup extends Component {
           onClose={() => this.closePopup()}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
-          className="artist-modal"
+          className="media-modal"
         >
-          <Paper className="artist-modal-content">
+          <Paper className="media-modal-content">
             <Typography id="modal-modal-title" variant="h6" component="h2">
               Artist Name : {artistName}
             </Typography>
@@ -53,10 +51,12 @@ class MediaPopup extends Component {
             <div className="album-image" style={{ backgroundImage: `url(${imageUrl})` }}>
             </div>
 
-            <div className="popup-field-container">
-              <PlayArrowIcon />
-              <PauseIcon />
-              <StopIcon />
+            <div className="media-player">
+              <ReactAudioPlayer
+                src={sampleUrl}
+                autoPlay={false}
+                controls
+              />
             </div>
           </Paper>
         </Modal>

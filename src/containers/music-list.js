@@ -11,7 +11,9 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import { getArtists } from '../actions/get-artists';
 import { artistPopupToggle } from '../actions/artist-popup-toggle';
+import { mediaPopupToggle } from '../actions/media-popup-toggle';
 import moment from 'moment';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 class MusicList extends React.Component {
 
@@ -24,8 +26,13 @@ class MusicList extends React.Component {
   }
 
   edit(artist) {
-    console.log('Artist need to edit', artist);
+    // console.log('Artist need to edit', artist);
     this.props.artistPopupToggle(artist, 'EDIT', true);
+  }
+
+  play(artist) {
+    console.log('play', artist);
+    this.props.mediaPopupToggle(artist, true);
   }
 
   formatDate(date) {
@@ -33,6 +40,22 @@ class MusicList extends React.Component {
       return moment(date).format('DD MMM yyyy');
     }
     return moment().format('DD MMM yyyy');
+  }
+
+  renderPlayButton(artist) {
+    let musicUrl = '';
+    try {
+      musicUrl = new URL(artist.sampleUrl);
+    } catch (_) {
+      return (<div></div>);
+    }
+
+    if (!artist.sampleUrl.toLowerCase().includes('.mp3')) {
+      return (<div></div>);
+    }
+
+    return (<PlayArrowIcon fontSize="large" onClick={() => this.play(artist)} />)
+
   }
 
   renderImage(imageUrl) {
@@ -77,7 +100,7 @@ class MusicList extends React.Component {
                   key={artist.artistId}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
-                  <TableCell component="th" scope="row" align="center">{index}</TableCell>
+                  <TableCell component="th" scope="row" align="center">{index + 1}</TableCell>
                   <TableCell>
                     <div className="album-name-cell">
                       {this.renderImage(artist.imageUrl)} <span>{artist.albumName}</span>
@@ -85,7 +108,7 @@ class MusicList extends React.Component {
                   </TableCell>
                   <TableCell>{artist.artistName}</TableCell>
                   <TableCell>{this.formatDate(artist.releaseDate)}</TableCell>
-                  <TableCell>{artist.sampleUrl}</TableCell>
+                  <TableCell align="center">{this.renderPlayButton(artist)}</TableCell>
                   <TableCell align="right">{`${artist.price}  円`}</TableCell>
                   <TableCell align="center">
                     <Button className="fpt-button" variant="contained" onClick={() => this.edit(artist)}>Edit</Button>
@@ -110,6 +133,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     getArtists: getArtists,
     artistPopupToggle: artistPopupToggle,
+    mediaPopupToggle: mediaPopupToggle,
   },
     dispatch);
 }

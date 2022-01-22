@@ -1,6 +1,6 @@
 export default function (state=null, action) {
     switch(action.type){
-        case 'ARTIST_POPUP' :
+        case 'MEDIA_POPUP' :
             return action.payload;
             break;
         

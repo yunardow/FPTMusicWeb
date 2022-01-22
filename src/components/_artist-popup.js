@@ -16,8 +16,6 @@ class ArtistPopup extends Component {
   constructor(props) {
     super(props);
 
-    console.log('ArtistPopup_constructor called', this.props.artistPopup);
-
     this.state = {
       artistId: undefined,
       artistName: undefined,
