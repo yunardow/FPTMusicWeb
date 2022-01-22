@@ -30,6 +30,11 @@ class MusicList extends React.Component {
     this.props.artistPopupToggle(artist, 'EDIT', true);
   }
 
+  delete(artist) {
+    // console.log('Artist need to edit', artist);
+    this.props.artistPopupToggle(artist, 'DELETE', true);
+  }
+
   play(artist) {
     console.log('play', artist);
     this.props.mediaPopupToggle(artist, true);
@@ -112,7 +117,7 @@ class MusicList extends React.Component {
                   <TableCell align="right">{`${artist.price}  円`}</TableCell>
                   <TableCell align="center">
                     <Button className="fpt-button" variant="contained" onClick={() => this.edit(artist)}>Edit</Button>
-                    <Button className="fpt-button" variant="contained" color="error">Delete</Button></TableCell>
+                    <Button className="fpt-button" variant="contained" onClick={() => this.delete(artist)} color="error">Delete</Button></TableCell>
                 </TableRow>
               ))}
             </TableBody>

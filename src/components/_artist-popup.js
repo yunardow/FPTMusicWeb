@@ -10,6 +10,7 @@ import Modal from '@mui/material/Modal';
 import Paper from '@mui/material/Paper';
 import { artistPopupToggle } from '../actions/artist-popup-toggle';
 import { updateArtists } from '../actions/update-artists';
+import { deleteArtist } from '../actions/delete-artists';
 
 class ArtistPopup extends Component {
 
@@ -29,6 +30,16 @@ class ArtistPopup extends Component {
 
   closePopup() {
     this.props.artistPopupToggle({}, '', false);
+  }
+
+  delete() {
+    const { artist: { artistId = '' }, type } = this.props.artistPopup;
+
+    if (artistId !== '' && type === 'DELETE') {
+      this.props.deleteArtist(artistId);
+    }
+
+    this.closePopup();
   }
 
   save() {
@@ -142,6 +153,7 @@ class ArtistPopup extends Component {
               <div className="popup-field">
                 <TextField
                   className="textfield"
+                  disabled={type === 'DELETE'}
                   required
                   id="outlined-required"
                   label="Album Name"
@@ -152,6 +164,7 @@ class ArtistPopup extends Component {
               <div className="popup-field">
                 <TextField
                   className="textfield"
+                  disabled={type === 'DELETE'}
                   required
                   id="outlined-required"
                   label="Artist name"
@@ -162,6 +175,7 @@ class ArtistPopup extends Component {
               <div className="popup-field">
                 <TextField
                   className="textfield"
+                  disabled={type === 'DELETE'}
                   required
                   id="outlined-required"
                   label="Release Date"
@@ -172,6 +186,7 @@ class ArtistPopup extends Component {
               <div className="popup-field">
                 <TextField
                   className="textfield"
+                  disabled={type === 'DELETE'}
                   required
                   id="outlined-required"
                   label="Price"
@@ -182,6 +197,7 @@ class ArtistPopup extends Component {
               <div className="popup-field">
                 <TextField
                   className="textfield"
+                  disabled={type === 'DELETE'}
                   id="outlined-required"
                   label="Image Url"
                   defaultValue={imageUrl}
@@ -191,6 +207,7 @@ class ArtistPopup extends Component {
               <div className="popup-field">
                 <TextField
                   className="textfield"
+                  disabled={type === 'DELETE'}
                   id="outlined-required"
                   label="Sample Url"
                   defaultValue={sampleUrl}
@@ -200,7 +217,12 @@ class ArtistPopup extends Component {
             </div>
 
             <div className="popup-action">
-              <Button className="fpt-button" variant="contained" onClick={() => this.save()}>Save</Button>
+              {type !== 'DELETE' && (
+                <Button className="fpt-button" variant="contained" onClick={() => this.save()}>Save</Button>
+              )}
+              {type === 'DELETE' && (
+                <Button className="fpt-button" variant="contained" onClick={() => this.delete()} color="error">Delete</Button>
+              )}
               <Button className="fpt-button" variant="outlined" onClick={() => this.closePopup()}>Cancel</Button>
             </div>
           </Paper>
@@ -220,6 +242,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     artistPopupToggle: artistPopupToggle,
     updateArtists: updateArtists,
+    deleteArtist: deleteArtist,
   }, dispatch);
 }
 
