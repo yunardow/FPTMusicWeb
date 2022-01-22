@@ -1,0 +1,21 @@
+@use 'sass:math';
+
+$color-black: #000000;
+$color-white: #ffffff;
+$color-green: #28CA72;
+$color-purple: #967FC7;
+$color-grey: #8F8F8F;
+$color-official-white: #EBF1FF;
+$color-official-white-rgba: rgba(226, 233, 255, 1);
+$color-official-white-rgba-70: rgba(226, 233, 255, 0.7);
+$color-official-blue: #2D5DD9;
+$color-official-blue-rgba: rgba(45, 93, 217, 0.93);
+
+@function get-vw($target) {
+  $vw-context: (1440 * 0.01) * 1px;
+  @return math.div($target, $vw-context) * 1vw;
+}
+@function get-vh($target) {
+  $vh-context: (800 * 0.01) * 1px;
+  @return math.div($target, $vw-context) * 1vh;
+} ;

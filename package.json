@@ -1,0 +1,32 @@
+{
+  "name": "fpq-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.2.5",
+    "@mui/material": "^5.2.8",
+    "axios": "^0.25.0",
+    "next": "12.0.7",
+    "react": "17.0.2",
+    "react-burger-menu": "^3.0.6",
+    "react-dom": "17.0.2",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.4.1",
+    "sass": "^1.48.0"
+  },
+  "devDependencies": {
+    "eslint": "8.6.0",
+    "eslint-config-next": "12.0.7"
+  }
+}
