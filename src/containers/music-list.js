@@ -88,8 +88,8 @@ class MusicList extends React.Component {
                   <TableCell>{artist.sampleUrl}</TableCell>
                   <TableCell align="right">{`${artist.price}  円`}</TableCell>
                   <TableCell align="center">
-                    <Button variant="contained" onClick={() => this.edit(artist)}>Edit</Button>
-                    <Button variant="contained" color="error">Delete</Button></TableCell>
+                    <Button className="fpt-button" variant="contained" onClick={() => this.edit(artist)}>Edit</Button>
+                    <Button className="fpt-button" variant="contained" color="error">Delete</Button></TableCell>
                 </TableRow>
               ))}
             </TableBody>

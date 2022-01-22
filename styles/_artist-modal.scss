@@ -1,0 +1,28 @@
+.artist-modal {
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  .artist-modal-content{
+    padding: 20px;
+    width: 60%;
+
+    h2{
+      margin: 10px 0;
+    }
+
+    .popup-field{
+      margin: 20px 10px;
+      width: 97%;
+
+      .textfield{
+        width: 100%;
+      }
+    }
+
+    .fpt-button{
+      min-width: 100px;
+      margin: 3px;
+    }
+
+  }
+}

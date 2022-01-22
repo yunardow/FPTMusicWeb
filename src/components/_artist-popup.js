@@ -90,7 +90,7 @@ class ArtistPopup extends Component {
     });
   }
 
-  onImageUrlChange(env) {
+  onImageUrlChange(evt) {
     // Some validation should be here if have time
     this.setState({
       imageUrl: evt.target.value
@@ -134,14 +134,16 @@ class ArtistPopup extends Component {
           onClose={() => this.closePopup()}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
+          className="artist-modal"
         >
-          <Paper>
+          <Paper className="artist-modal-content">
             <Typography id="modal-modal-title" variant="h6" component="h2">
               {type}
             </Typography>
-            <Paper className="popup-field-container">
+            <div className="popup-field-container">
               <div className="popup-field">
                 <TextField
+                  className="textfield"
                   required
                   id="outlined-required"
                   label="Album Name"
@@ -151,6 +153,7 @@ class ArtistPopup extends Component {
               </div>
               <div className="popup-field">
                 <TextField
+                  className="textfield"
                   required
                   id="outlined-required"
                   label="Artist name"
@@ -160,6 +163,7 @@ class ArtistPopup extends Component {
               </div>
               <div className="popup-field">
                 <TextField
+                  className="textfield"
                   required
                   id="outlined-required"
                   label="Release Date"
@@ -169,6 +173,7 @@ class ArtistPopup extends Component {
               </div>
               <div className="popup-field">
                 <TextField
+                  className="textfield"
                   required
                   id="outlined-required"
                   label="Price"
@@ -178,7 +183,7 @@ class ArtistPopup extends Component {
               </div>
               <div className="popup-field">
                 <TextField
-                  required
+                  className="textfield"
                   id="outlined-required"
                   label="Image Url"
                   defaultValue={imageUrl}
@@ -187,17 +192,19 @@ class ArtistPopup extends Component {
               </div>
               <div className="popup-field">
                 <TextField
-                  required
+                  className="textfield"
                   id="outlined-required"
                   label="Sample Url"
                   defaultValue={sampleUrl}
                   onChange={(env) => this.onSampleUrlChange(env)}
                 />
               </div>
-            </Paper>
+            </div>
 
-            <Button onClick={() => this.save()}> Save </Button>
-
+            <div className="popup-action">
+              <Button className="fpt-button" variant="contained" onClick={() => this.save()}>Save</Button>
+              <Button className="fpt-button" variant="outlined" onClick={() => this.closePopup()}>Cancel</Button>
+            </div>
           </Paper>
         </Modal>
       </div>
